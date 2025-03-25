@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <TableSettings />
+      <ProgressTracker />
     </Router>
   </React.StrictMode>
 );

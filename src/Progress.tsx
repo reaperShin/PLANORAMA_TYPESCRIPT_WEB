@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
-import "./Progress.css";
+import "./ProgressTracker.css"; // Import the external CSS file
 
 const progressCategories = [
     {
@@ -32,14 +32,12 @@ const progressCategories = [
 const ProgressTracker: React.FC = () => {
     const [progress, setProgress] = useState(progressCategories);
 
-    // Function to handle checkbox change
     const handleCheckboxChange = (categoryIndex: number, taskIndex: number) => {
         const updatedProgress = [...progress];
         updatedProgress[categoryIndex].tasks[taskIndex].completed = !updatedProgress[categoryIndex].tasks[taskIndex].completed;
         setProgress(updatedProgress);
     };
 
-    // Calculate progress data for the chart
     const chartData = progress.map(category => ({
         name: category.title,
         completed: category.tasks.filter(task => task.completed).length,
@@ -47,33 +45,32 @@ const ProgressTracker: React.FC = () => {
     }));
 
     return (
-        <>
-        <div style={{ textAlign: "center", padding: "20px", fontFamily: "Arial, sans-serif" }}>
-            <h1>Task Progress Tracker</h1>
+        <div className="progress-tracker">
+            <h1 className="title">Task Progress Tracker</h1>
 
-            {/* Task Lists */}
-            <div style={{ display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap" }}>
+            <div className="task-list-container">
                 {progress.map((category, categoryIndex) => (
-                    <div key={categoryIndex} style={{ padding: "15px", border: "1px solid #ddd", borderRadius: "10px", minWidth: "250px", background: "#f8f8f8" }}>
-                        <h3>{category.title}</h3>
+                    <div key={categoryIndex} className="task-category">
+                        <h3 className="category-title">{category.title}</h3>
                         {category.tasks.map((task, taskIndex) => (
-                            <div key={task.id} style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
+                            <div key={task.id} className="task-item">
                                 <input
                                     type="checkbox"
                                     checked={task.completed}
                                     onChange={() => handleCheckboxChange(categoryIndex, taskIndex)}
-                                    style={{ marginRight: "10px" }}
+                                    className="task-checkbox"
                                 />
-                                <label style={{ textDecoration: task.completed ? "line-through" : "none" }}>{task.name}</label>
+                                <label className={`task-label ${task.completed ? "completed" : ""}`}>
+                                    {task.name}
+                                </label>
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
 
-            {/* Bar Chart */}
-            <div style={{ width: "100%", height: "300px", marginTop: "40px" }}>
-                <h2>Progress Chart</h2>
+            <div className="chart-container">
+                <h2 className="chart-title">Progress Chart</h2>
                 <ResponsiveContainer width="70%" height="100%">
                     <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -86,7 +83,6 @@ const ProgressTracker: React.FC = () => {
                 </ResponsiveContainer>
             </div>
         </div>
-        </>
     );
 };
 

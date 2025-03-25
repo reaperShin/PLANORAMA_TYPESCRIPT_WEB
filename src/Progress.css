@@ -1,10 +1,11 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #f0f2f5;
     margin: 0;
     padding: 0;
     text-align: center;
+    color: #333;
 }
 
 /* Main Container */
@@ -14,9 +15,10 @@ body {
 
 /* Header */
 .progress-tracker h1 {
-    font-size: 26px;
-    color: #333;
+    font-size: 28px;
+    color: #222;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 /* Task List Container */
@@ -29,47 +31,60 @@ body {
 
 /* Individual Task Category */
 .task-category {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    min-width: 250px;
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 280px;
     background: #ffffff;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+    border-left: 5px solid #4caf50;
+    cursor: pointer;
 }
 
 .task-category:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .task-category h3 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 22px;
+    color: #444;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
 /* Task Items */
 .task-item {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 6px;
+    background: rgba(76, 175, 80, 0.1);
+    transition: background 0.3s;
+}
+
+.task-item:hover {
+    background: rgba(76, 175, 80, 0.2);
 }
 
 .task-item input[type="checkbox"] {
     margin-right: 10px;
     cursor: pointer;
+    transform: scale(1.2);
 }
 
 /* Completed Task */
 .task-item label {
     font-size: 16px;
-    color: #444;
-    transition: color 0.3s;
+    color: #333;
+    transition: color 0.3s, text-decoration 0.3s;
 }
 
 .task-item input[type="checkbox"]:checked + label {
     text-decoration: line-through;
-    color: #999;
+    color: #888;
+    font-weight: 500;
 }
 
 /* Chart Section */
@@ -83,6 +98,7 @@ body {
     font-size: 22px;
     color: #333;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 /* Responsive Design */

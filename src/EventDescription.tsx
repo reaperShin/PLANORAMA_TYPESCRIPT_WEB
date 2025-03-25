@@ -29,7 +29,7 @@ const EventRequirements = [
     "Event Requirement 9",
 ];
 
-const Web: React.FC = () => {
+const EventDescrip: React.FC = () => {
     const event = events[0]; // Change this index to select a specific event
 
     return (
@@ -60,4 +60,4 @@ const Web: React.FC = () => {
     );
 };
 
-export default Web;
+export default EventDescrip;

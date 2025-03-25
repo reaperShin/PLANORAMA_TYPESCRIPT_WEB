@@ -109,3 +109,36 @@ button:hover {
     width: 70px;
     cursor: grab;
 }
+
+.menu-overlay {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    width: 150px;
+    z-index: 100;
+}
+
+.menu-overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-overlay li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.menu-overlay li:last-child {
+    border-bottom: none;
+}
+
+.menu-overlay li:hover {
+    background-color: #f0f0f0;
+}

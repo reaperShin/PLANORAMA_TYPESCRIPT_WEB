@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ✅ Import Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
-import Web from "./App"; // ✅ Renamed Login → Web
+import Web from "./App"; // Renamed from Login to Web
 import reportWebVitals from "./reportWebVitals";
 import Dashboard from "./dashboard";
-import TableSettings from "./TableSettings";
-import EventDescription from "./EventDescription";
-import Progress from "./Progress";
+import TableSettings from "./TableSettings"; // Fixed name
+import EventDescription from "./EventDescription"; // Fixed name
+import ProgressTracker from "./Progress";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,17 +15,21 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Router> {/* ✅ Use BrowserRouter */}
-      <Routes>
-        <Route path="/" element={<Web />} /> {/* ✅ Corrected Web component */}
-        <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Fixed path */}
-        <Route path="/EventDescription" element={<EventDescription />} />
-        <Route path="/Progress" element={<Progress />} />
-        <Route path="/TableSettings" element={<TableSettings />} />
-      </Routes>
+    <Router>
+      <TableSettings />
     </Router>
   </React.StrictMode>
 );
 
 // ✅ Performance Monitoring (Optional)
 reportWebVitals();
+
+/*
+<Routes>
+        <Route path="/" element={<Web />} />
+        <Route path="/dashboard" element={<Dashboard />} /> 
+        <Route path="/EventDescription" element={<EventDescription />} /> 
+        <Route path="/Progress" element={<ProgressTracker />} />
+        <Route path="/TableSettings" element={<TableSettings />} /> 
+      </Routes>
+*/

@@ -6,7 +6,7 @@ import EventImage2 from "./Engagement.avif";
 import EventImage3 from "./Marriage.avif";
 import EventImage4 from "./Reunion.avif";
 
-const Web: React.FC = () => {
+const Dashboard: React.FC = () => {
   const navigate = useNavigate(); // Initialize navigation
 
   const events = [
@@ -150,4 +150,4 @@ const Web: React.FC = () => {
   );
 };
 
-export default Web;
+export default Dashboard;

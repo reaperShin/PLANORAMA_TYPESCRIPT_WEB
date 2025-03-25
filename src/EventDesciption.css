@@ -1,18 +1,33 @@
-/* Ensure full screen coverage */
+/* General Reset */
 html, body, #root {
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow-y: auto; /* Enables vertical scrolling */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
 }
 
-/* Gradient background covering the full screen */
+/* Hide scrollbar for WebKit-based browsers */
+html, body, #root ::-webkit-scrollbar {
+    width: 0px;
+    display: none;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 🔹 Gradient Background */
 .Gradient {
     background: linear-gradient(to bottom, #6a11cb, #2575fc);
-    padding: 20px;
+    padding: 30px;
     border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     height: 100vh;
     width: 100vw;
@@ -21,72 +36,130 @@ html, body, #root {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Header Styling */
+/* 🔹 Header Styling */
 .DescriptionHeader h1 {
-    font-size: 24px;
+    font-size: 26px;
+    font-weight: bold;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .DescriptionHeader h3 {
     font-size: 18px;
     margin: 5px 0;
+    opacity: 0.9;
 }
 
+/* 🔹 Icons Styling */
 .DescriptionHeader img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     margin: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
 }
 
 .DescriptionHeader img:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    filter: brightness(1.2);
 }
 
-/* Content & Requirements Sections */
+/* 🔹 Content & Requirements Sections */
 .DescriptionContent, .DescriptionRequirements {
-    margin-top: 15px;
-    padding: 10px;
+    margin-top: 20px;
+    padding: 15px;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    width: 80%;
+    width: 85%;
     max-width: 600px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Checkboxes styling */
+.DescriptionContent:hover, .DescriptionRequirements:hover {
+    transform: scale(1.02);
+}
+
+/* 🔹 Checkboxes Styling */
 .DescriptionRequirements div {
     display: flex;
     align-items: center;
-    margin: 5px 0;
+    margin: 8px 0;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.DescriptionRequirements div:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .DescriptionRequirements input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 12px;
     cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #ffffff;
 }
 
-/* Dynamic Image Styling */
+/* 🔹 Dynamic Image Styling */
 .DynamicImage {
     width: 100%;
     max-height: 300px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-top: 10px;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
+.DynamicImage:hover {
+    transform: scale(1.03);
+}
+
+/* 🔹 Mobile & Tablet Responsiveness */
+@media (max-width: 768px) {
     .Gradient {
-        width: 95vw;
-        height: 95vh;
+        width: 100%;
+        height: auto;
+        padding: 20px;
     }
+
+    .DescriptionHeader h1 {
+        font-size: 22px;
+    }
+
+    .DescriptionHeader h3 {
+        font-size: 16px;
+    }
+
+    .DescriptionHeader img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .DescriptionContent, .DescriptionRequirements {
+        width: 90%;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
     .DescriptionHeader h1 {
         font-size: 20px;
     }
+
     .DescriptionHeader h3 {
-        font-size: 16px;
+        font-size: 14px;
+    }
+
+    .DescriptionHeader img {
+        width: 35px;
+        height: 35px;
     }
 }

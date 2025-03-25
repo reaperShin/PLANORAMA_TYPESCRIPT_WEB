@@ -36,6 +36,7 @@ header {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
   font-size: 30px;
+  margin-top: 22px;
 }
 
 /* Navigation Menu */
@@ -44,22 +45,28 @@ ul {
   justify-content: flex-end;
   align-items: center;
   list-style: none;
+  margin-top: 0px;
 }
 
 ul li {
-  margin-left: 30px;
+  margin-left: 20px;
   font-size: 18px;
+  justify-content: center;
 }
 
-ul li a {
+ul li .NavigaButton {
   text-decoration: none;
-  color: white;
   font-family: Arial, sans-serif;
   font-weight: bold;
   transition: 0.4s ease-in-out;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: inherit;
 }
 
-ul li a:hover {
+.NavigaButton:hover {
   color: orange;
 }
 
@@ -106,28 +113,35 @@ ul li a:hover {
   overflow-y: auto; /* Allows scrolling inside this container */
 }
 
+.SideForm::-webkit-scrollbar {
+  width: 0px; /* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+  display: none;
+}
+
 /* Form Styling */
 .form {
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
   width: 100%;
   background-color: rgba(51, 48, 48, 0);
   border-radius: 30px;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 20px;
 }
 
 /* Sign-Up and Sign-In Form Specific Styling */
 .form.sign-up {
-  margin-top: 50px;
-  height: 500px;
+  margin-top: 40px;
+  height: 400px;
+  align-items: center; /* Ensures the form starts from the top */
 }
 
 .form.sign-in {
   height: 400px;
   margin-top: 50px;
+  align-items: center; /* Ensures the form starts from the top */
 }
 
 /* Input Styling */
@@ -246,9 +260,11 @@ h1 {
   gap: 10px;
   background-color: #ffffff05;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(25px);
-  width: 300px;
+  -webkit-backdrop-filter: blur(10px);
+  width: 20%;
   margin: 0px 30px;
+  border-radius: 20px;
+  border: 1px solid white;
 }
 
 .Solo img{
@@ -261,4 +277,96 @@ h1 {
   color: white;
   font-size: 30px;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.Solo p{
+  color: white;
+  font-size: 15px;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.ProfileHead{
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: Roboto, Times, serif;
+  font-weight: bold;
+}
+
+/* Feedback Overlay - Fullscreen Blackout */
+.feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it stays on top */
+  pointer-events: auto; /* Enables interaction inside the overlay */
+}
+
+/* Feedback Box */
+.feedback-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Above the overlay */
+}
+
+/* Disable Clicks on Background */
+body.modal-open {
+  overflow: hidden; /* Prevent scrolling */
+  pointer-events: none; /* Disable clicks */
+}
+
+/* Enable Clicks Only on Feedback Box */
+.feedback-box {
+  pointer-events: auto; /* Allow interaction */
+}
+
+/* Textarea for Feedback */
+.feedback-box textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Buttons */
+.feedback-box button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Send Button */
+.feedback-box button:first-of-type {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Close Button */
+.feedback-box button:last-of-type {
+  background-color: #dc3545;
+  color: white;
 }

@@ -1,21 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Dashboard from './dashboard';
-import Description from './description';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ✅ Import Router
+import "./index.css";
+import Web from "./App"; // ✅ Renamed Login → Web
+import reportWebVitals from "./reportWebVitals";
+import Dashboard from "./dashboard";
+import TableSettings from "./TableSettings";
+import EventDescription from "./EventDescription";
+import Progress from "./Progress";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <Dashboard />
+    <Router> {/* ✅ Use BrowserRouter */}
+      <Routes>
+        <Route path="/" element={<Web />} /> {/* ✅ Corrected Web component */}
+        <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Fixed path */}
+        <Route path="/EventDescription" element={<EventDescription />} />
+        <Route path="/Progress" element={<Progress />} />
+        <Route path="/TableSettings" element={<TableSettings />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// ✅ Performance Monitoring (Optional)
 reportWebVitals();

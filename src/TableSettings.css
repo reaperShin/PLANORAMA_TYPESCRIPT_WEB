@@ -1,0 +1,111 @@
+/* Ensure full height for body */
+.body {
+    height: 100vh; /* 100% of the viewport height */
+    width: 100vw;
+    display: flex;
+    flex-direction: column; /* Stack header and environment vertically */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/*------HEADER SECTION-----------*/
+.header {
+    height: 80px;
+    width: 100%; /* Ensures it fits within the viewport */
+    background-color: #282c34;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box; /* Prevents it from exceeding width */
+    flex-shrink: 0; /* Prevents shrinking */
+    overflow: hidden; /* Ensures no extra width issues */
+}
+
+.Logo {
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: Green;
+    color: white;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    height: 35px;
+    width: 70px;
+    border: 2px solid Green;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #80e5838a;
+}
+
+.menubar {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+}
+
+/*------ENVIRONMENT SECTION-----------*/
+.Environment {
+    flex-grow: 1; /* Takes up remaining space after header */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #282c34;
+    height: calc(100vh - 80px); /* Full height minus header */
+    box-sizing: border-box; /* Prevents it from exceeding width */
+    flex-shrink: 0; /* Prevents shrinking */
+    overflow: hidden; /* Ensures no extra width issues */
+}
+
+/*------DROPPING SECTION (80%)-----------*/
+.TableLayout {
+    background-color: #b4b5b6;
+    flex: 4; /* 80% width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/*------TABLE CONTAINER SECTION (20%)-----------*/
+.Tables {
+    flex: 1; /* 20% width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    height: 100%;
+    padding: 10px;
+}
+
+/*------GRID LAYOUT FOR TABLE CONTAINER-----------*/
+.TableContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    padding: 10px;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+}
+
+/*------TABLE IMAGE STYLING SECTION-----------*/
+.draggable {
+    height: 70px;
+    width: 70px;
+    cursor: grab;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./dashboard.css";
 import EventImage1 from "./Birthday.avif";
 import EventImage2 from "./Engagement.avif";
@@ -6,6 +7,8 @@ import EventImage3 from "./Marriage.avif";
 import EventImage4 from "./Reunion.avif";
 
 const Web: React.FC = () => {
+  const navigate = useNavigate(); // Initialize navigation
+
   const events = [
     { title: "Jordan's Birthday Party", image: EventImage1, description: "Celebrate Jordan's birthday with fun and excitement!", date: "March 25, 2025", time: "7:00 PM" },
     { title: "Galauran's Wedding Ceremony", image: EventImage3, description: "Join us in celebrating love and happiness.", date: "April 10, 2025", time: "5:00 PM" },
@@ -18,17 +21,27 @@ const Web: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  // Function to display event details when a slide is clicked
   const handleSlideClick = (event: any) => {
     setSelectedEvent(event);
   };
 
-  // Function to toggle the event creation form
   const toggleEventForm = () => {
     setShowEventForm((prev) => !prev);
   };
 
-  // Next slide function
+  // Function to navigate to Progress.tsx
+  const handleNavigateToEventDescription = () => {
+    navigate("/EventDescription");
+  };
+
+  const handleNavigateToProgress = () => {
+    navigate("/Progress");
+  };
+
+  const returnEventForm = () => {
+    navigate("/App");
+  };
+
   const nextSlide = () => {
     setIsTransitioning(true);
     setTimeout(() => {
@@ -36,7 +49,6 @@ const Web: React.FC = () => {
     }, 500);
   };
 
-  // Previous slide function
   const prevSlide = () => {
     setIsTransitioning(true);
     setTimeout(() => {
@@ -44,11 +56,10 @@ const Web: React.FC = () => {
     }, 500);
   };
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000);
+    }, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -56,10 +67,12 @@ const Web: React.FC = () => {
     <>
       <header>
         <p id="Logo">PLANORAMA</p>
+        <div className="NavButts">
         <button className="EventBtn" onClick={toggleEventForm}>Add Event</button>
+        <button className="LogoutBtn" onClick={returnEventForm}>Logout</button>
+        </div>
       </header>
 
-      {/* Carousel Section */}
       <div className="carousel-container">
         <div
           className="carousel-wrapper"
@@ -82,12 +95,10 @@ const Web: React.FC = () => {
           ))}
         </div>
 
-        {/* Navigation Buttons */}
         <button className="carousel-button prev" onClick={prevSlide}>&#10094;</button>
         <button className="carousel-button next" onClick={nextSlide}>&#10095;</button>
       </div>
 
-      {/* Event Details Modal */}
       {selectedEvent && (
         <div className="overlay">
           <div className="Form">
@@ -96,11 +107,11 @@ const Web: React.FC = () => {
             {selectedEvent.time && <h3>Time: {selectedEvent.time}</h3>}
             <p>{selectedEvent.description}</p>
             <button className="CloseBtn" onClick={() => setSelectedEvent(null)}>Close</button>
+            <button className="EnterBtn" onClick={handleNavigateToEventDescription}>Description</button> {/* Navigate to Progress.tsx */}
           </div>
         </div>
       )}
 
-      {/* Event Creation Form */}
       {showEventForm && (
         <div className="overlay">
           <div className="EventForm">
@@ -128,8 +139,10 @@ const Web: React.FC = () => {
               </div>
               <input type="file" aria-label="Upload Image" />
             </form>
-
-            <button className="CloseBtn" onClick={toggleEventForm}>Close</button>
+            <div className="Btns">
+              <button className="CloseBtn" onClick={toggleEventForm}>Close</button>
+              <button className="EnterBtn" onClick={handleNavigateToProgress}>Create</button> {/* Navigate to Progress.tsx */}
+            </div>
           </div>
         </div>
       )}

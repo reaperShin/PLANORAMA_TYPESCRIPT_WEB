@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import './App.css';
-import HoverLogin from './HoverLogin.jpg';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Correct use of useNavigate
+import "./App.css";
+import HoverLogin from "./HoverLogin.jpg";
 import Google from "./Google.png";
 import Facebook from "./Facebook.png";
 import Apple from "./Apple.png";
@@ -12,14 +13,41 @@ const Web: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [showFeedback, setShowFeedback] = useState<boolean>(false);
+  const [feedbackText, setFeedbackText] = useState<string>("");
+
+  const navigate = useNavigate(); // ✅ Ensure useNavigate() is inside Router
 
   const handleAuthAction = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (isSignUp) {
       console.log("Signing up with", { username, password, confirmPassword });
     } else {
-      console.log("Logging in with", { username, password });
+      // ✅ Check Login Credentials
+      if (username === "Meowmeow" && password === "Meowmeow") {
+        navigate("/dashboard"); // ✅ Navigate to Dashboard on Success
+      } else {
+        alert("Invalid username or password!");
+      }
     }
+  };
+
+  const handleOpenFeedback = () => {
+    setShowFeedback(true);
+    document.body.classList.add("modal-open"); // Disable background clicks
+  };
+
+  const handleCloseFeedback = () => {
+    setShowFeedback(false);
+    document.body.classList.remove("modal-open"); // Enable background clicks
+  };
+
+  const handleFeedbackSubmit = () => {
+    if (feedbackText.trim() === "") return;
+    console.log("Feedback submitted:", feedbackText);
+    setFeedbackText("");
+    handleCloseFeedback();
   };
 
   return (
@@ -30,64 +58,74 @@ const Web: React.FC = () => {
         <ul>
           <li>
             <button
+              className="NavigaButton"
               onClick={() => setShowAboutUs(!showAboutUs)}
-              style={{
-                background: "none",
-                border: "none",
-                color: "blue",
-                textDecoration: "underline",
-                cursor: "pointer",
-                fontSize: "inherit",
-              }}
             >
               {showAboutUs ? "Back to Login" : "About Us"}
+            </button>
+          </li>
+          <li>
+            <button className="NavigaButton" onClick={handleOpenFeedback}>
+              Feedback
             </button>
           </li>
         </ul>
       </header>
 
+      {/* Feedback Overlay */}
+      {showFeedback && (
+        <div className="feedback-overlay">
+          <div className="feedback-box">
+            <h2>Give Your Feedback</h2>
+            <textarea
+              placeholder="Write your feedback here..."
+              value={feedbackText}
+              onChange={(e) => setFeedbackText(e.target.value)}
+            />
+            <button onClick={handleFeedbackSubmit}>Send</button>
+            <button onClick={handleCloseFeedback}>Close</button>
+          </div>
+        </div>
+      )}
+
       {/* About Us Section (Toggled) */}
       {showAboutUs ? (
         <div id="AboutUs">
-          <h1>Organization</h1>
+          <h1 className="ProfileHead">Profiles</h1>
           <div className="Profiles">
             <div className="Solo">
               <h1>Ugalde, Ednest Lyner C.</h1>
-              <img src=" " alt=" " />
               <div className="Details">
                 <p>Role: Designer/Documentation</p>
                 <p>Email: ednestlynercugalde@gmail.com</p>
-                <p>Contact: </p>
               </div>
             </div>
-
-            <div className="Solo">
-              <h1>Galauran Jr., Mariano R.</h1>
-              <img src=" " alt=" " />
-              <div className="Details">
-                <p>Role: Full Stack App Developer, Back-End Web Developer</p>
-                <p>Email: mariano1220@gmail.com</p>
-                <p>Contact: </p>
-              </div>
-            </div>
-
-            <div className="Solo">
-              <h1>Divina, John Jordan E.</h1>
-              <img src=" " alt=" " />
-              <div className="Details">
-                <p>Role: Front-End Web Developer</p>
-                <p>Email: johnjordandivina@gmail.com</p>
-                <p>Contact: 09055773519</p>
-              </div>
-            </div>
-
             <div className="Solo">
               <h1>Reyes, Benedict</h1>
-              <img src=" " alt=" " />
               <div className="Details">
                 <p>Role: Researcher</p>
-                <p>Email: </p>
-                <p>Contact: </p>
+                <p>Email: benedictReyes@gmail.com</p>
+              </div>
+            </div>
+            <div className="Solo">
+              <h1>Jamil, Jalal</h1>
+              <div className="Details">
+                <p>Role: Back End Web Developer</p>
+                <p>Email: jamilJala@gmail.com</p>
+              </div>
+            </div>
+            <div className="Solo">
+              <h1>Divina, John Jordan E.</h1>
+              <div className="Details">
+                <p>Role: Front-End Web Developer</p>
+                <p>Email: divinaBurat@gmail.com</p>
+              </div>
+            </div>
+            <div className="Solo">
+              <h1>Galauran Jr., Mariano R.</h1>
+              <div className="Details">
+                <p>Role: Full Stack App Developer</p>
+                <p>Email: mariano1220@gmail.com</p>
               </div>
             </div>
           </div>
